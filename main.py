@@ -21,23 +21,26 @@ enemies.add(Enemy(screen, game_settings))
 start_button = Start_Button(screen)
 
 while 1:
-	check_events(hero)
+	check_events(hero, start_button, game_settings)
 
 	screen.fill(game_settings.bg_color)
 
 	for hero in hero_group.sprites():
-		hero.update_me()
+		if game_settings.game_active:
+			hero.update_me()
 		hero.draw_me()
 
 	for enemy in enemies.sprites():
-		enemy.update_me(hero)
+		if game_settings.game_active:
+			enemy.update_me(hero)
 		enemy.draw_me()
 
 	hero_died = groupcollide(hero_group, enemies, True, True)
 	if hero_died:
 		print "You lost!"
+		game_settings.game_active = False
 
-
-	start_button.draw_button()
+	if game_settings.game_active == False:
+		start_button.draw_button()
 
 	pygame.display.flip()

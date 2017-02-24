@@ -6,7 +6,7 @@ class Enemy(Sprite):
 	def __init__(self,screen,game_settings):
 		super(Enemy,self).__init__()
 		self.image = pygame.image.load('enemy1.png')
-		self.speed = 1
+		self.speed = 2
 		self.rect = self.image.get_rect()
 		self.screen_rect = screen.get_rect()
 		self.screen = screen
@@ -16,7 +16,7 @@ class Enemy(Sprite):
 	def update_me(self, hero):
 		dx = self.rect.x - hero.rect.x
 		dy = self.rect.y - hero.rect.y
-		dist = math.hypot(dx,dy)
+		dist = math.hypot(dx, dy)
 		dx = dx / dist
 		dy = dy / dist
 		self.rect.x -= dx * self.speed
