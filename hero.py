@@ -16,7 +16,7 @@ class Hero(Sprite):
 		self.moving_up = False
 		self.moving_down = False
 		self.speed = settings.hero_speed
-
+		
 	def update_me(self):
 		if self.moving_right:
 			self.rect.centerx += 10 * self.speed
